@@ -1,0 +1,33 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}My cool blog posts{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Time slot</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">User</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.getDescription() }}</td>
+            <td>{{ appointment.getHour().getFrom() }} - {{ appointment.getHour().getTo() }}</td>
+            <td>{{ appointment.getStatus().getName() }}</td>
+            <td>{{ appointment.getDate() }}</td>
+            <td>{{ appointment.getLawyer().getName() }}</td>
+            <td>
+                <a href="{{ path_for('lawyerUpdateAppointment', {'id': appointment.getId()}) }}" class="btn btn-outline-warning">Edit</a>
+                <a href="{{ path_for('lawyerApproveAppointment', {'id': appointment.getId()}) }}" class="btn btn-outline-warning">Approve</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

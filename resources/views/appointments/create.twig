@@ -1,0 +1,32 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}My cool blog posts{% endblock %}
+
+{% block body %}
+    <form METHOD="post" action="{{ path_for('createAppointment') }}">
+        <div class="form-group">
+            <label for="exampleInputName">Description</label>
+            <input name="description" type="text" class="form-control" id="inputDescription" placeholder="Enter description">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName">Date</label>
+            <input type="date" name="date">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Hour</label>
+            <select class="form-control" name="hour_id">
+                {% for hour in hours %}
+                    <option value="{{ hour.getId() }}">{{ hour.getFrom() }} - {{ hour.getTo() }}</option>
+                {% endfor %}
+            </select>
+        <div class="form-group">
+            <label for="exampleInputPassword1">lawyer</label>
+            <select class="form-control" name="lawyer_id">
+                {% for lawyer in lawyers %}
+                    <option value="{{ lawyer.getId() }}">{{ lawyer.getName() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

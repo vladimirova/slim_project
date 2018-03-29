@@ -1,0 +1,30 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}My cool blog posts{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Time slot</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+            <th scope="col">Lawyer</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.getDescription() }}</td>
+            <th>{{ appointment.getHour().getFrom() }} - {{ appointment.getHour().getTo() }}</th>
+            <th>{{ appointment.getStatus().getName() }}</th>
+            <th>{{ appointment.getDate() }}</th>
+            <th>{{ appointment.getLawyer().getName() }}</th>
+            <td></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
